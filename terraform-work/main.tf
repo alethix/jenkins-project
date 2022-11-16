@@ -22,7 +22,7 @@ resource "vsphere_virtual_machine" "vm_jenkins_master" {
   }
 }
 
-resource "vsphere_virtual_machine" "vm_jenkins" {
+resource "vsphere_virtual_machine" "vm_jenkins_agent" {
   count = "3"  
   name             = "${var.v_06_vsphere_vm_agent}_${count.index + 1}"
   resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
