@@ -10,6 +10,7 @@ variable "v_01_provider_username" {
 variable "v_02_provider_password" {
   type        = string
   description = "Password: "
+  sensitive = true  
 }
 
 variable "v_03_provider_vsphere_server" {
