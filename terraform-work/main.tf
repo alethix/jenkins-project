@@ -47,3 +47,4 @@ resource "vsphere_virtual_machine" "vm_jenkins_agent" {
     template_uuid = data.vsphere_virtual_machine.template.id
   }
 }
+
