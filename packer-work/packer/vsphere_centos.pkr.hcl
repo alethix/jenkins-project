@@ -77,8 +77,7 @@ source "vsphere-iso" "centos" {
   convert_to_template   = true
 
   # VM resource parameters 
-  #guest_os_type         = "centos8_64Guest"
-  guest_os_type         = "rhel8_64Guest"
+  guest_os_type         = "centos8_64Guest"  
   CPUs                  = "${var.cpu_num}"
   CPU_hot_plug          = true
   RAM                   = "${var.mem_size}"
