@@ -1,6 +1,3 @@
-vsphere_user     = ""
-vsphere_password = ""
-
 ssh_username = "root"
 ssh_password = ""
 
