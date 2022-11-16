@@ -6,7 +6,7 @@ resource "vsphere_virtual_machine" "vm_vishal" {
   memory           = 1024
   guest_id         = data.vsphere_virtual_machine.template.guest_id
   scsi_type        = data.vsphere_virtual_machine.template.scsi_type
-  folder           = vsphere_folder.folder.path
+  folder           = var.v_04_vsphere_folder
 
   network_interface {
     network_id   = data.vsphere_network.network.id
