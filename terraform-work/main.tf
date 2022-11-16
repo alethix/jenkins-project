@@ -1,9 +1,3 @@
-resource "vsphere_folder" "folder" {
-  path          = var.v_04_vsphere_folder
-  type          = "vm"
-  datacenter_id = data.vsphere_datacenter.alethix_data_center.id
-}
-
 resource "vsphere_virtual_machine" "vm_vishal" {
   name             = var.v_05_vsphere_virtual_machine
   resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id

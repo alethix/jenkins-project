@@ -21,3 +21,8 @@ data "vsphere_virtual_machine" "template" {
   name          = "centos8_x64_packer_template"
   datacenter_id = data.vsphere_datacenter.alethix_data_center.id
 }
+
+data "vsphere_folder" "folder" {
+  path          = var.v_04_vsphere_folder  
+  datacenter_id = data.vsphere_datacenter.alethix_data_center.id
+}
