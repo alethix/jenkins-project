@@ -32,10 +32,11 @@ resource "vsphere_virtual_machine" "vm_jenkins_agent" {
   guest_id         = data.vsphere_virtual_machine.template.guest_id
   scsi_type        = data.vsphere_virtual_machine.template.scsi_type
   folder           = var.v_04_vsphere_folder
+  
 
   network_interface {
     network_id   = data.vsphere_network.network.id
-    adapter_type = data.vsphere_virtual_machine.template.network_interface_types[0]
+    adapter_type = data.vsphere_virtual_machine.template.network_interface_types[0]    
   }
   disk {
     label            = "disk0"
