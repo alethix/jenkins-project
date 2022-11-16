@@ -25,8 +25,14 @@ variable "v_04_vsphere_folder" {
   default     = "Jenkins_Automation_Project"
 }
 
-variable "v_05_vsphere_virtual_machine" {
+variable "v_05_vsphere_vm_master" {
   type        = string
   description = "VM Name: "
   default     = "jenkins-master"
+}
+
+variable "v_06_vsphere_vm_agent" {
+  type        = string
+  description = "VM Name: "
+  default     = "jenkins-agent"
 }
