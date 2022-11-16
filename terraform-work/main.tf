@@ -1,5 +1,6 @@
 resource "vsphere_virtual_machine" "vm_jenkins" {
-  name             = var.v_05_vsphere_virtual_machine
+  count = "3"  
+  name             = "${var.v_05_vsphere_virtual_machine}_${count.index}"
   resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
   datastore_id     = data.vsphere_datastore.datastore.id
   num_cpus         = 1
