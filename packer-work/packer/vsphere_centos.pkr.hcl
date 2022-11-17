@@ -126,8 +126,10 @@ build {
     sources = ["source.vsphere-iso.centos"]
     provisioner "shell" {      
       inline = [
-        "sudo useradd -m -G root '${var.ansible_username}' -p '${var.ansible_password}'",
-        "sudo echo '${var.ansible_username}:${var.ansible_password}' | chpasswd"
+        "sudo useradd -m root '${var.ansible_username}' -p '${var.ansible_password}'",
+        "sudo echo '${var.ansible_username}:${var.ansible_password}' | chpasswd",
+        "sudo usermod -aG sudo '${var.ansible_username}'",
+        "echo '${var.ansible_username}  ALL=(ALL:ALL) ALL' >> /etc/sudoers"
         ]
     }
 }
