@@ -126,7 +126,7 @@ build {
     sources = ["source.vsphere-iso.centos"]
     provisioner "shell" {      
       inline = [
-        "sudo useradd -m '${var.ansible_username}' -p '${var.ansible_password}'",
+        "sudo useradd -m -G root '${var.ansible_username}' -p '${var.ansible_password}'",
         "sudo echo '${var.ansible_username}:${var.ansible_password}' | chpasswd"
         ]
     }
