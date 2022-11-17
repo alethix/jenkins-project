@@ -1,3 +1,13 @@
+resource "tls_private_key" "ansible_key" {
+    algorithm = "RSA"
+    rsa_bits = 4096
+}
+
+resource "local_file" "ansiblekey" {
+    filename = "ansiblekey.pem"
+    content = tls_private_key.ansible_key.private_key_pem
+}
+
 resource "vsphere_virtual_machine" "vm_jenkins_master" {  
   name             = "${var.v_05_vsphere_vm_master}"
   resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
@@ -6,7 +16,7 @@ resource "vsphere_virtual_machine" "vm_jenkins_master" {
   memory           = 1024
   guest_id         = data.vsphere_virtual_machine.template.guest_id
   scsi_type        = data.vsphere_virtual_machine.template.scsi_type
-  folder           = var.v_04_vsphere_folder
+  folder           = var.v_04_vsphere_folder  
 
   network_interface {
     network_id   = data.vsphere_network.network.id
@@ -32,8 +42,6 @@ resource "vsphere_virtual_machine" "vm_jenkins_agent" {
   guest_id         = data.vsphere_virtual_machine.template.guest_id
   scsi_type        = data.vsphere_virtual_machine.template.scsi_type
   folder           = var.v_04_vsphere_folder
-  
-
   network_interface {
     network_id   = data.vsphere_network.network.id
     adapter_type = data.vsphere_virtual_machine.template.network_interface_types[0]    

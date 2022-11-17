@@ -62,6 +62,14 @@ variable "os_iso_path" {
   type    = string
 }
 
+variable "ansible_username" {
+  type = string
+}
+
+variable "ansible_password" {
+  type = string
+}
+
 source "vsphere-iso" "centos" {
 
   # vCenter parameters
@@ -116,4 +124,7 @@ source "vsphere-iso" "centos" {
 
 build {
     sources = ["source.vsphere-iso.centos"]
+    provisioner "shell" {
+      inline = ["sudo useradd -m '${var.ansible_username}' -p '${var.ansible_password}'"]
+    }
 }
