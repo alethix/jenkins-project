@@ -127,7 +127,7 @@ build {
     provisioner "shell" {      
       inline = [
         "sudo useradd -m '${var.ansible_username}' -p '${var.ansible_password}'",
-        "sudo echo '${ansible_username}:${ansible_password}' | chpasswd"
+        "sudo echo '${var.ansible_username}:${var.ansible_password}' | chpasswd"
         ]
     }
 }
