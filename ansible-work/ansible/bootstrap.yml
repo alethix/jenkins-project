@@ -1,0 +1,33 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: install updates (CentOS)
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: create ansiauto  user
+    user:
+      name: ansiauto
+      groups: root
+
+  - name: create ssh key
+    authorized_key:
+      user: ansiauto
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPGUdXRXAkOKDkdxVvqnGZswlxXCoeFg7gOFYP3zv17u ansible"
+
+  - name: add sudoers file for ansiauto
+    copy:
+      src: sudoer_ansiauto
+      dest: /etc/sudoers.d/ansiauto
+      owner: root
+      group: root
+      mode: 0440

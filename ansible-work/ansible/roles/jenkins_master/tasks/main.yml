@@ -1,0 +1,31 @@
+- name: Download Long Term Jenkins release
+  get_url:
+    url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+    dest: /etc/yum.repos.d/jenkins.repo 
+
+- name: Import jenkins key from url
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+- name: yum update
+  ansible.builtin.yum:
+    name: '*'
+    state: latest
+
+- name: Install java
+  ansible.builtin.yum:
+    name: java-11-openjdk
+    state: present
+
+- name: Install jenkins
+  ansible.builtin.yum:
+    name: jenkins
+    state: latest
+
+- name: start service jenkins if not started
+  ansible.builtin.service:
+    name: jenkins
+    state: started
+    enabled: yes
+

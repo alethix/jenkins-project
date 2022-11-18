@@ -1,0 +1,4 @@
+- name: create ssh key
+  authorized_key:
+    user: ansiauto
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPGUdXRXAkOKDkdxVvqnGZswlxXCoeFg7gOFYP3zv17u ansible"
