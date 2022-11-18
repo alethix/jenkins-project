@@ -128,7 +128,7 @@ build {
       inline = [
         "sudo useradd -m '${var.ansible_username}'",
         "sudo echo '${var.ansible_username}:${var.ansible_password}' | chpasswd",
-        "sudo usermod -aG sudo '${var.ansible_username}'",
+        "sudo usermod -aG wheel '${var.ansible_username}'",
         "echo '${var.ansible_username}  ALL=(ALL:ALL) ALL' >> /etc/sudoers"
         ]
     }
