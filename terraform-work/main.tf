@@ -1,13 +1,3 @@
-resource "tls_private_key" "ansible_key" {
-    algorithm = "RSA"
-    rsa_bits = 4096
-}
-
-resource "local_file" "ansiblekey" {
-    filename = "ansiblekey.pem"
-    content = tls_private_key.ansible_key.private_key_pem
-}
-
 resource "vsphere_virtual_machine" "vm_jenkins_master" {  
   name             = "${var.v_05_vsphere_vm_master}"
   resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
@@ -29,7 +19,7 @@ resource "vsphere_virtual_machine" "vm_jenkins_master" {
   }
   clone {
     template_uuid = data.vsphere_virtual_machine.template.id
-  }  
+  }
 }
 
 resource "vsphere_virtual_machine" "vm_jenkins_agent" {
@@ -53,7 +43,7 @@ resource "vsphere_virtual_machine" "vm_jenkins_agent" {
   }
   clone {
     template_uuid = data.vsphere_virtual_machine.template.id
-  }
+  }  
 
   extra_config = {
     "guestinfo.userdata" = data.template_cloudinit_config.jagent[count.index].rendered

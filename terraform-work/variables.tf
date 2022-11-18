@@ -36,3 +36,8 @@ variable "v_06_vsphere_vm_agent" {
   description = "VM Name: "
   default     = "jenkins-agent"
 }
+
+variable "v_07_ansible_user" {
+  type        = string
+  description = "ansible user: "
+}

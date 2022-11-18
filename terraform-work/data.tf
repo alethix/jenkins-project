@@ -30,16 +30,16 @@ data "template_cloudinit_config" "jagent" {
     content_type = "text/cloud-config"
     content = <<-EOF
       #cloud-config
-      hostname: ${var.v_06_vsphere_vm_agent}_${count.index + 1}
+      hostname: ${var.v_06_vsphere_vm_agent}_${count.index + 1}.alethixlabs.io
       users:
-        - name: ansible123                    
+        - name: ansible                    
           ssh-authorized-keys:
             - ${file("~/.ssh/id_ed25519.pub")}
       runcmd:
-        - sed -i '/ansible123 insecure public key/d' /home/ansible123/.ssh/authorized_keys
-        # make sure the ansible123 account is not expired.
-        # NB this is needed when the base image expires the ansible123 account.
-        - usermod --expiredate '' ansible123
+        - sed -i '/ansible insecure public key/d' /home/ansible/.ssh/authorized_keys
+        # make sure the ansible account is not expired.
+        # NB this is needed when the base image expires the ansible account.
+        - usermod --expiredate '' ansible
       EOF
   }
 }
