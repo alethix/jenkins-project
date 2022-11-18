@@ -34,7 +34,7 @@ data "template_cloudinit_config" "jagent" {
       users:
         - name: ansible123                    
           ssh-authorized-keys:
-            - ${file("~/.ssh/id_rsa.pub")}
+            - ${file("~/.ssh/id_ed25519.pub")}
       runcmd:
         - sed -i '/ansible123 insecure public key/d' /home/ansible123/.ssh/authorized_keys
         # make sure the ansible123 account is not expired.
