@@ -29,7 +29,7 @@ resource "vsphere_virtual_machine" "vm_jenkins_master" {
   }
   clone {
     template_uuid = data.vsphere_virtual_machine.template.id
-  }
+  }  
 }
 
 resource "vsphere_virtual_machine" "vm_jenkins_agent" {
@@ -54,5 +54,9 @@ resource "vsphere_virtual_machine" "vm_jenkins_agent" {
   clone {
     template_uuid = data.vsphere_virtual_machine.template.id
   }
+
+  extra_config = {
+    "guestinfo.userdata" = data.template_cloudinit_config.jagent[count.index].rendered
+  }  
 }
 
