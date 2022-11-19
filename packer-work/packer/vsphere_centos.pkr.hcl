@@ -125,8 +125,9 @@ source "vsphere-iso" "centos" {
 build {
     sources = ["source.vsphere-iso.centos"]
     provisioner "shell" {      
-      inline = [
-        "echo 'N' | sudo yum install cloud-init"        
-        ]
+      execute_command = "echo '${var.ssh_password}' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'" # This runs the scripts with sudo
+      scripts = [
+          "scripts/cloud_init.sh"          
+      ]
     }
 }

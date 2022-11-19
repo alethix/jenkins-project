@@ -1,0 +1,1 @@
+"echo 'y' | sudo yum install cloud-init"
